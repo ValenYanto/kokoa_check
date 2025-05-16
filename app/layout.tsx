@@ -28,8 +28,10 @@ export default function RootLayout({
         >
           <div className="relative flex min-h-screen w-full flex-col">
             <Header />
-            <main className="flex-1 w-full py-6 md:py-12">
-              {children}
+            <main className="flex-1 w-full">
+              <div className="container mx-auto px-4 py-6 md:py-12">
+                {children}
+              </div>
             </main>
             <Footer />
           </div>
