@@ -11,7 +11,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Progress } from "@/components/ui/progress"
 import { PrintResult } from "@/components/print-result"
 import { useReactToPrint } from "react-to-print"
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+// import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 
 export default function HasilPage() {
   const [results, setResults] = useState<any[]>([])
@@ -96,7 +96,7 @@ export default function HasilPage() {
         })}
       </div>
       
-      <Card>
+      {/* <Card>
         <CardHeader>
           <CardTitle>Analisis Perbandingan</CardTitle>
           <CardDescription>
@@ -125,7 +125,7 @@ export default function HasilPage() {
             Hasil diagnosa menunjukkan persentase keyakinan berdasarkan gejala yang Anda pilih.
           </p>
         </CardFooter>
-      </Card>
+      </Card> */}
       
       <div className="border-t pt-8">
         <div className="space-y-2">
