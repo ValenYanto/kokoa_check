@@ -1,8 +1,9 @@
 import { diseases } from "@/lib/data"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 export default function InfoPage() {
   return (
@@ -14,11 +15,23 @@ export default function InfoPage() {
         </p>
       </div>
       
+      <div className="relative">
+        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <Input 
+          placeholder="Cari penyakit..." 
+          className="pl-9"
+          type="search"
+        />
+      </div>
+      
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {diseases.map(disease => (
-          <Card key={disease.id}>
+          <Card key={disease.id} className="group hover:shadow-lg transition-all duration-200">
             <CardHeader>
-              <CardTitle>{disease.name}</CardTitle>
+              <CardTitle className="flex items-center justify-between">
+                <span>{disease.name}</span>
+                <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </CardTitle>
               <CardDescription>{disease.id}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -26,9 +39,8 @@ export default function InfoPage() {
                 {disease.description || "Tidak ada deskripsi tersedia."}
               </p>
               <Link href={`/info/${disease.id}`}>
-                <Button variant="outline" size="sm" className="w-full">
+                <Button variant="outline" size="sm" className="w-full group-hover:bg-primary group-hover:text-primary-foreground">
                   Lihat Detail
-                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
             </CardContent>
