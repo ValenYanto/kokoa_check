@@ -26,9 +26,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative min-h-screen flex flex-col">
+          <div className="relative flex min-h-screen w-full flex-col">
             <Header />
-            <main className="flex-1 container py-6 md:py-12">
+            <main className="flex-1 w-full py-6 md:py-12">
               {children}
             </main>
             <Footer />
