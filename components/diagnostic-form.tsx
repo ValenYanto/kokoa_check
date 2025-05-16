@@ -90,7 +90,7 @@ export function DiagnosticForm() {
         </p>
       </div>
       
-      <div className="sticky top-[72px] z-10 bg-background pt-2 pb-4 border-b mb-6">
+      <div className="top-[72px] z-10 bg-background pt-2 pb-4 border-b mb-6">
         <Input
           type="search"
           placeholder="Cari gejala..."
@@ -125,8 +125,14 @@ export function DiagnosticForm() {
               initialValue={selectedSymptoms[symptom.id] || 0}
             />
           ))}
+          {filteredSymptoms.length === 0 && (
+            <p className="col-span-full text-center text-muted-foreground">
+              Tidak ada diagnosa yang cocok dengan &ldquo;{searchTerm}&rdquo;.
+            </p>
+          )}
         </div>
       ) : (
+        
         <Tabs defaultValue="buah">
           <TabsList className="grid w-full grid-cols-5">
             <TabsTrigger value="buah">Buah</TabsTrigger>
@@ -201,6 +207,7 @@ export function DiagnosticForm() {
             </div>
           </TabsContent>
         </Tabs>
+        
       )}
       
       <div className="sticky bottom-0 py-4 bg-background border-t flex justify-end">

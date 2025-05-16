@@ -11,6 +11,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Progress } from "@/components/ui/progress"
 import { PrintResult } from "@/components/print-result"
 import { useReactToPrint } from "react-to-print"
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 
 export default function HasilPage() {
   const [results, setResults] = useState<any[]>([])
@@ -49,6 +50,11 @@ export default function HasilPage() {
       </div>
     )
   }
+  
+  const chartData = results.slice(0, 5).map(result => ({
+    name: result.diseaseName.split(' ')[0],
+    value: Number((result.certaintyFactor * 100).toFixed(1))
+  }))
   
   return (
     <div className="space-y-8">
@@ -97,20 +103,22 @@ export default function HasilPage() {
             Perbandingan tingkat keyakinan dari hasil diagnosa
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
-          {results.slice(0, 5).map((result) => (
-            <div key={result.diseaseId} className="space-y-1">
-              <div className="flex justify-between">
-                <span className="text-sm font-medium">
-                  {result.diseaseName}
-                </span>
-                <span className="text-sm text-muted-foreground">
-                  {(result.certaintyFactor * 100).toFixed(1)}%
-                </span>
-              </div>
-              <Progress value={result.certaintyFactor * 100} className="h-2" />
-            </div>
-          ))}
+        <CardContent className="h-[300px]">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={chartData} layout="vertical">
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis type="number" unit="%" />
+              <YAxis dataKey="name" type="category" width={100} />
+              <Tooltip 
+                formatter={(value: number) => [`${value}%`, 'Tingkat Keyakinan']}
+              />
+              <Bar 
+                dataKey="value" 
+                fill="hsl(var(--chart-1))"
+                radius={[0, 4, 4, 0]}
+              />
+            </BarChart>
+          </ResponsiveContainer>
         </CardContent>
         <CardFooter>
           <p className="text-sm text-muted-foreground">
