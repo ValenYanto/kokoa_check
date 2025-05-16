@@ -1,3 +1,4 @@
+"ise client"
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Leaf, Microscope, ClipboardList, Info, ArrowRight } from "lucide-react";
